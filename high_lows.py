@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 
 
 # Get high temperatures from file
-filename = 'death_valley_2014.csv'
+filename = 'san_francisco_april_2019.csv'
 with open(filename) as f:
     reader = csv.reader(f)
     header_row = next(reader)
@@ -13,7 +13,7 @@ with open(filename) as f:
     dates, highs, lows = [], [], []
     for row in reader:
         try:
-            current_date = datetime.strptime(row[0], '%Y-%m-%d')
+            current_date = datetime.strptime(row[0], '%m/%d/%Y')
             high = int(row[1])
             low = int(row[3])
         except ValueError:
@@ -31,7 +31,7 @@ plt.plot(dates, lows, c = 'blue')
 plt.fill_between(dates, highs, lows, facecolor = 'blue', alpha=.1)
 
 # Format plot
-title = "Daily high and low temperatures - 2014 \nDeath Valley, CA"
+title = "San Francisco - April 2019 - Highs & Lows"
 plt.title(title, fontsize = 20)
 plt.xlabel('', fontsize = 16)
 fig.autofmt_xdate()
